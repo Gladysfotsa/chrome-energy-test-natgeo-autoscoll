@@ -1,0 +1,23 @@
+---
+name: Chrome - NatGeo Auto-Scroll
+author: Gladysfotsa <gladysfotsa99@gmail.com>
+description: Auto-scroll benchmark of National Geographic using Puppeteer
+
+architecture: Linux
+
+services:
+  chrome-container:
+    image: gladysfotsa/chrome_autoscroll_image
+    environment:
+      URL_TO_VISIT: "https://www.nationalgeographic.com"
+    command: /usr/local/bin/chrome-entry.sh
+
+flow:
+  - name: Scroll NatGeo
+    container: chrome-container
+    commands:
+      - type: console
+        command: echo "Auto-scrolling National Geographic with Puppeteer..."
+      - type: console
+        command: sleep 60
+        note: Wait for full scroll/render activity
